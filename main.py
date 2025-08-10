@@ -38,11 +38,13 @@ class Record:
             self.phones.remove(phone_obj)
 
     def edit_phone(self, old_number, new_number):
-        phone_obj = self.find_phone(old_number)
-        if phone_obj:
-            phone_obj.value = new_number
-        else:
+        if not self.find_phone(old_number):
             raise ValueError(f"Phone number {old_number} not found.")
+
+        Phone.validate(new_number)
+
+        self.add_phone(new_number)
+        self.remove_phone(old_number)
 
     def find_phone(self, phone_number):
         for phone in self.phones:
