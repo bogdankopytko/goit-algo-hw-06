@@ -41,8 +41,6 @@ class Record:
         if not self.find_phone(old_number):
             raise ValueError(f"Phone number {old_number} not found.")
 
-        Phone.validate(new_number)
-
         self.add_phone(new_number)
         self.remove_phone(old_number)
 
